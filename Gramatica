@@ -1,0 +1,7 @@
+S -> G | S.P | SOS
+O -> ; | con | & | mix | + | add | - | sub | * | mult | / | div
+G -> sin(N,N) | lin(N,N) | sil() | noi(N) | {G} | N | G;G
+N -> 0|..|9|N|0N|1N|..|9N
+M -> ZN.N 
+Z -> + | - | lambda
+P -> play(N) | post | loop(N) | tune (M) | fill(N) | reduce | expand  
