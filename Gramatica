@@ -1,8 +1,8 @@
 S -> G | S.P | SOS | {S}
 O -> ; | con | & | mix | + | add | - | sub | * | mul | / | div
-G -> sin(N,N) | lin(N,N) | silQ | silenceQ | noise(N) | noi(N) | N | sin(N) | noise
+G -> sin(N,N) | lin(M,M) | silQ | silenceQ | noise(N) | noi(N) | N | sin(N) | noise
 N -> 0|..|9|N|1N|..|9N
-M -> ZN.N 
+M -> ZN.N | N
 Z -> + | - | lambda
 P -> play(N) | postQ | loop(N) | tune (M) | fill(N) | reduceQ | expandQ | playQ
 Q -> () | lambda
