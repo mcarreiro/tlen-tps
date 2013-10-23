@@ -17,10 +17,10 @@
     <node id="n0">
       <data key="d6">
         <y:ShapeNode>
-          <y:Geometry height="30.0" width="575.7195440414508" x="186.0" y="-132.0"/>
+          <y:Geometry height="30.0" width="847.8617009041959" x="294.06914954790193" y="-139.3126633986928"/>
           <y:Fill color="#FFCC00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="17.96875" modelName="custom" textColor="#000000" visible="true" width="494.03125" x="40.844147020725416" y="6.015625">{noise;sin(1);noise;noise.loop(3)*lin(1.0,0.25);noise.loop(6)*lin(0.25,0.0)}.reduce<y:LabelModel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="20" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="27.28125" modelName="custom" textColor="#000000" visible="true" width="820.71875" x="13.571475452097957" y="1.359375">{noise;sin(1);noise;noise.loop(3)*lin(1.0,0.25);noise.loop(6)*lin(0.25,0.0)}.reduce<y:LabelModel>
               <y:SmartNodeLabelModel distance="4.0"/>
             </y:LabelModel>
             <y:ModelParameter>
@@ -51,7 +51,7 @@
     <node id="n2">
       <data key="d6">
         <y:ShapeNode>
-          <y:Geometry height="30.0" width="30.0" x="492.0" y="-41.666666666666686"/>
+          <y:Geometry height="30.0" width="30.0" x="834.0" y="-41.666666666666686"/>
           <y:Fill color="#FFCC00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="17.96875" modelName="custom" textColor="#000000" visible="true" width="11.236328125" x="9.3818359375" y="6.015625">P<y:LabelModel>
@@ -68,7 +68,7 @@
     <node id="n3">
       <data key="d6">
         <y:ShapeNode>
-          <y:Geometry height="30.0" width="30.0" x="392.0" y="-41.666666666666686"/>
+          <y:Geometry height="30.0" width="30.0" x="734.0" y="-41.666666666666686"/>
           <y:Fill color="#FFCC00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="17.96875" modelName="custom" textColor="#000000" visible="true" width="7.814453125" x="11.0927734375" y="6.015625">.<y:LabelModel>
@@ -136,7 +136,7 @@
     <node id="n7">
       <data key="d6">
         <y:ShapeNode>
-          <y:Geometry height="30.0" width="46.0" x="487.0" y="17.0"/>
+          <y:Geometry height="30.0" width="46.0" x="829.0" y="17.0"/>
           <y:Fill color="#FFCC00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="17.96875" modelName="custom" textColor="#000000" visible="true" width="45.51953125" x="0.240234375" y="6.015625">reduce<y:LabelModel>
@@ -1632,7 +1632,7 @@
     <node id="n95">
       <data key="d6">
         <y:ShapeNode>
-          <y:Geometry height="30.0" width="30.0" x="563.0" y="18.333333333333314"/>
+          <y:Geometry height="30.0" width="30.0" x="905.0" y="18.333333333333314"/>
           <y:Fill color="#FFCC00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="17.96875" modelName="custom" textColor="#000000" visible="true" width="13.4453125" x="8.27734375" y="6.015625">Q<y:LabelModel>
@@ -1649,7 +1649,7 @@
     <node id="n96">
       <data key="d6">
         <y:ShapeNode>
-          <y:Geometry height="30.0" width="30.0" x="563.0" y="81.0"/>
+          <y:Geometry height="30.0" width="30.0" x="905.0" y="120.0750053867701"/>
           <y:Fill color="#FFCC00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="17.96875" modelName="custom" textColor="#000000" visible="true" width="11.1015625" x="9.44921875" y="6.015625">λ<y:LabelModel>
