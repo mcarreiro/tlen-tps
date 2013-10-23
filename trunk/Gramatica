@@ -1,6 +1,6 @@
 S -> G | S.P | SOS | {S}
 O -> ; | con | & | mix | + | add | - | sub | * | mul | / | div
-G -> sin(N,R) | lin(R,R) | silQ | silenceQ | noise(R) | noi(R) | R
+G -> sin(N,R) | lin(R,R) | linear(R,R) | silQ | silenceQ | noise(R) | noi(R) | R | noise | sin(N)
 P -> play(R) | postQ | loop(N) | tune (E) | fill(R) | reduceQ | expandQ | playQ
 N -> 0|..|9|0N|1N|..|9N
 M -> ZN.N
@@ -12,3 +12,27 @@ Q -> () | lambda
 Descripcion:
 Basicamente la gramatica se puede dividir en tres categorias cuyo resultando siempre seran buffers: Generadores, Metodos (con parentesis opcionales si no tienen parametros) y Numeros, que estos ultimos a su vez se dividen en enteros, naturales y racionales, para que cada metodo reciba el tipo de parametro que le corresponde. Además, adaptamos la gramatica para que permita los ejemplos del enunciado que no cumplen las formas de escritura por considerarlos como abrevaciones o parametros opcionales de los mismos. 
 La presencia de "espacios" no son considerados y son eliminados por el analizador lexico.
+
+Tokens Lexicos:
+con
+mix
+add
+sub
+mul
+div
+sin(
+lin(
+linear(
+noi
+noise
+sil
+silence
+play(
+post
+loop(
+tune(
+fill(
+reduce
+expand
+play
+()
