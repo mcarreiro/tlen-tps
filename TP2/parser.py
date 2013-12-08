@@ -59,9 +59,9 @@ def t_FLOAT(t):
 def t_NUMBER(t):
     r'\d+'
     try:
-        t.value = float(t.value)
+        t.value = int(t.value)
     except ValueError:
-        print("Float value too large %d", t.value)
+        print("Integer value too large %d", t.value)
         t.value = 0
     return t
 
