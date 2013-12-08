@@ -7,15 +7,15 @@
 
 tokens = (
     'CON','MIX','ADD','SUB','MUL','DIV','SIN',
-    'LIN','NOI','SIL','PLAY','POST','LOOP','SEMICOLON',
-	'TUNE','FILL','REDUCE','EXPAND','NUMBER','LKEY','RKEY','AMPERSAND',
-	'LPAREN','RPAREN','POINT','COMA', 'FLOAT', 'SIGN', 'PAREN','POSITIVE','NEGATIVE'
+    'LIN','NOI','SIL','PLAY','POST','LOOP',
+	'TUNE','FILL','REDUCE','EXPAND','NUMBER','LKEY','RKEY',
+	'LPAREN','RPAREN','POINT','COMA', 'FLOAT', 'PAREN','POSITIVE','NEGATIVE'
     )
 
 # Tokens
 
-t_CON    = r'con'
-t_MIX   = r'mix'
+t_CON    = r'con|;'
+t_MIX   = r'mix|&'
 t_ADD   = r'add|\+'
 t_SUB  = r'sub|-'
 t_MUL  = r'mul|\*'
@@ -40,8 +40,6 @@ t_LKEY  = r'\{'
 t_RKEY  = r'\}'
 t_POINT  = r'.'
 t_COMA = r','
-t_SEMICOLON = r';'
-t_AMPERSAND = r'&'
 
 #t_SIGN = r'(\+|-)?'
 #t_PAREN = r'(\(\))?'
@@ -116,9 +114,7 @@ def p_g(t):
 #	 | NOISE
 
 def p_o(t):
-	'''o : SEMICOLON
-		| CON
-		| AMPERSAND
+	'''o : CON
 		| MIX
 	 	| ADD
 		| SUB
