@@ -78,8 +78,6 @@ def t_error(t):
 import ply.lex as lex
 lex.lex()
 
-# Parsing rules
-
 #precedence = (
 #    ('left','PLUS','MINUS'),
 #    ('left','TIMES','DIVIDE'),
@@ -92,12 +90,10 @@ lex.lex()
 def p_s(t):
     '''s : LKEY s RKEY a
 				 | g b'''
-    #names[t[1]] = t[3]
 
 def p_a(t):
     '''a : POINT p a 
 		 | b'''
-    #print(t[1])
 
 def p_b(t):
 	'''b : o s
@@ -108,10 +104,9 @@ def p_g(t):
 		 | LIN LPAREN FLOAT COMA FLOAT RPAREN
 		 | SIL paren
 		 | NOI LPAREN FLOAT RPAREN
-		 | FLOAT
-		 | SIN LPAREN NUMBER RPAREN'''
-
-#	 | NOISE
+		 | FLOAT'''
+#		 | SIN LPAREN NUMBER RPAREN
+#	 	 | NOISE
 
 def p_o(t):
 	'''o : CON
@@ -120,7 +115,6 @@ def p_o(t):
 		| SUB
 		| MUL
 		| DIV'''
-	
 
 def p_p(t):
 	'''p : PLAY LPAREN FLOAT RPAREN
