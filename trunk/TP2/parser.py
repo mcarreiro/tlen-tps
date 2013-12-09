@@ -94,11 +94,33 @@ def p_s(t):
 def p_a(t):
     '''a : POINT p a 
 		 | b'''
+    if t[1] != '.':
+        t[0] = t[1]
 
 def p_b(t):
 	'''b : o s
 		 | '''
-
+	if t[1] == ';' or t[1] == 'con':
+        t[0] = t[0] + t[2]
+	else:
+        x = len(t[0])
+        y = len(t[2])
+        i = 0
+        res = []        
+        while i < x or i < y:
+            if t[1] == '+' or t[1] == 'add':
+                res[i] = t[0][i%x] + t[2][i%y]
+            elif t[1] == '-' or t[1] == 'sub':
+                res[i] = t[0][i%x] - t[2][i%y]
+            elif t[1] == '*' or t[1] == 'mul':
+                res[i] = t[0][i%x] * t[2][i%y]
+            elif t[1] == '/' or t[1] == 'div':
+                res[i] = t[0][i%x] / t[2][i%y]
+            elif t[1] == '&' or t[1] == 'mix':
+                res[i] = (t[0][i%x] + t[2][i%y])/2     
+            i = i + 1
+        t[0] = res
+            
 def p_g(t):
 	'''g : SIN LPAREN NUMBER COMA FLOAT RPAREN
 		 | LIN LPAREN FLOAT COMA FLOAT RPAREN
@@ -107,6 +129,12 @@ def p_g(t):
 		 | FLOAT'''
 #		 | SIN LPAREN NUMBER RPAREN
 #	 	 | NOISE
+    if t[1] == 'sin':
+    elif t[1] == 'lin':
+    elif t[1] == 'sil':
+    elif t[1] == 'noi':
+    else
+        t[0][0] = t[1]
 
 def p_o(t):
 	'''o : CON
@@ -115,6 +143,7 @@ def p_o(t):
 		| SUB
 		| MUL
 		| DIV'''
+	t[0] = t[1]
 
 def p_p(t):
 	'''p : PLAY LPAREN FLOAT RPAREN
