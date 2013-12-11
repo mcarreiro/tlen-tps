@@ -1,13 +1,27 @@
 import math
 global beat
 beat = 12
+#GENERADORES
 def sin(c,a):
 	buff = [0]*beat
 	x = (c*2*(math.pi))/beat
 	for i in range(0,beat):
 		buff[i] = a* (math.sin(i*x))
 	return buff
+#METODOS
+def post(buff):
+	cadena = ""
+	for i in range(0,len(buff)):
+		cadena= cadena+" " +str(buff[i])
+	print cadena
 
+def loop(buff,R):
+	buff_r = []
+	for i in range(0,R):
+		buff_r = buff_r + buff
+	return buff_r
+
+			
 def resample(buff_a,L):
 	buff_b =[0]*L
 	for i in range(0,L):
