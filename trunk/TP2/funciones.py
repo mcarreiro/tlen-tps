@@ -20,8 +20,10 @@ def sil():
 def noi(a):
 	return numpy.random.random_sample(size=beat)*a
 
+
+
 #METODOS
-def post(buff):
+def post(buff,p=None):
 	cadena = ""
 	for i in range(0,len(buff)):
 		cadena= cadena+" " +str(buff[i])
@@ -32,7 +34,6 @@ def loop(buff,R):
 	for i in range(0,R):
 		buff_r = buff_r + buff
 	return buff_r
-
 			
 def resample(buff_a,L):
 	buff_b =[0]*L
@@ -73,8 +74,10 @@ def resize(buff_a,L):
 		buff_b[i] = buff_a[i % len(buff_a)]
 	return buff_b
 
+
+#GENERALIZADORES
 def method(op, buff, p):
-	return op(buff,p)
+	return locals()[op](buff,p)
 
 def oper(op, buff_a, buff_b):
 	if op == ';' or op == 'con':
@@ -102,6 +105,17 @@ funtion =
 	 'mix':mix, '&':mix
 	}
 
+method = 
+	{'add':add, '+': add,
+	 'sub':sub, '-': sub,
+	 'mul':mul, '*': mul,
+	 'div':div, '/':div,
+	 'mix':mix, '&':mix
+	}
+
+
+
+#OPERADORES
 def add(a,b):
 	return a + b
 def sub(a,b):
