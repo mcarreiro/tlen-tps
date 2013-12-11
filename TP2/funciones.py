@@ -61,6 +61,9 @@ def resize(buff_a,L):
 		buff_b[i] = buff_a[i % len(buff_a)]
 	return buff_b
 
+def method(op, buff, p):
+	return op(buff,p)
+
 def oper(op, buff_a, buff_b):
 	if op == ';' or op == 'con':
 		return buff_a+buff_b
