@@ -17,14 +17,14 @@ def tune(buff , P):
 def reduce(buff, N):
 	L = beat*N
 	if len(buff)>N:
-		return resample ( buf f , N)
+		return resample ( buff , N)
 	else:
 		return buff
 
 def expand(buff, N):
 	L = beat*N
 	if len(buff)<N:
-		return resample ( buf f , N)
+		return resample ( buff , N)
 	else:
 		return buff
 
@@ -64,5 +64,5 @@ def mul(a,b):
 	return a*b
 def div(a,b):
 	return a/b
-def mix(a,b)
+def mix(a,b):
 	return (a+b)/2
