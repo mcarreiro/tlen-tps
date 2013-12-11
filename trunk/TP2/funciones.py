@@ -29,7 +29,7 @@ def resample(buff_a,L):
 	return buff_b
 
 def tune(buff , P):
-	return resample(buff,int(len(buff)*((2**(1.0/12))**-P)))
+	return resample(buff,int(len(buff)*((2**(1.0/beat))**-P)))
 
 def reduce(buff, N):
 	L = beat*N
