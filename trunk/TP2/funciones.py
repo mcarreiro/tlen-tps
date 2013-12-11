@@ -44,7 +44,7 @@ def fill(buff,N):
 def resize(buff_a,L):
 	buff_b = [0]*L
 	for i in range(0,L):
-		buff_b = buff_a[i % len(buff_a)]
+		buff_b[i] = buff_a[i % len(buff_a)]
 	return buff_b
 
 def oper(op, buff_a, buff_b):
@@ -57,7 +57,7 @@ def oper(op, buff_a, buff_b):
 	else:
 		a = buff_a
 		b = resize(buff_b, len(buff_a))
-	buff = []
+	buff = [0]*len(a)
 
 	for i in range(0,len(a)):
 		buff[i] = op(a[i], b[i])
