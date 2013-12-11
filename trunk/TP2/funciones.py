@@ -48,6 +48,9 @@ def resize(buff_a,L):
 	return buff_b
 
 def oper(op, buff_a, buff_b):
+	if op == ';' or op == 'con':
+		return buff_a+buff_b
+
 	if len(buff_a) < len(buff_b):
 		a = resize(buff_a, len(buff_b))
 		b = buff_b
@@ -55,6 +58,7 @@ def oper(op, buff_a, buff_b):
 		a = buff_a
 		b = resize(buff_b, len(buff_a))
 	buff = []
+
 	for i in range(0,len(a)):
 		buff[i] = op(a[i], b[i])
 	return buff
