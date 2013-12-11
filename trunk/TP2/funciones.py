@@ -1,6 +1,8 @@
 import math
+import numpy
 global beat
 beat = 12
+
 #GENERADORES
 def sin(c,a):
 	buff = [0]*beat
@@ -8,6 +10,16 @@ def sin(c,a):
 	for i in range(0,beat):
 		buff[i] = a* (math.sin(i*x))
 	return buff
+
+def lin(a,b):
+	return numpy.linspace(a,b,beat)
+
+def sil():
+	return [0]*beat
+
+def noi(a):
+	return numpy.random.random_sample(size=beat)*a
+
 #METODOS
 def post(buff):
 	cadena = ""
@@ -68,6 +80,8 @@ def oper(op, buff_a, buff_b):
 	if op == ';' or op == 'con':
 		return buff_a+buff_b
 
+	op = function[op]
+
 	if len(buff_a) < len(buff_b):
 		a = resize(buff_a, len(buff_b))
 		b = buff_b
@@ -79,6 +93,14 @@ def oper(op, buff_a, buff_b):
 	for i in range(0,len(a)):
 		buff[i] = op(a[i], b[i])
 	return buff
+
+funtion = 
+	{'add':add, '+': add,
+	 'sub':sub, '-': sub,
+	 'mul':mul, '*': mul,
+	 'div':div, '/':div,
+	 'mix':mix, '&':mix
+	}
 
 def add(a,b):
 	return a + b

@@ -1,12 +1,6 @@
 from tokens import *
 from funciones import *
 
-
-def show():
-	print ORDEN
-	ORDEN += 1
-
-
 def p_s(t):
 	'''s : LKEY s RKEY a
 		 | g b'''
@@ -29,6 +23,9 @@ def p_a(t):
 		 | b'''
 	if t[1] != '.':
 		t[0] = t[1]
+	else:
+		obj = {'method': t[2], value: t[3]}
+		t[0] = obj
 
 def p_b(t):
 	'''b : o s
@@ -37,28 +34,6 @@ def p_b(t):
 	if len(t) > 1:
 		obj = {'operator': t[1], 'value': t[2]}
 		t[0] = obj
-	# if 1 in t and (t[1] == ';' or t[1] == 'con'):		
-	# 	t[0] = t[0] + t[2]
-	# elif 1 in t and (t[1] != ';' and t[1] != 'con'):
-	# 	x = len(t[0])
-	# 	y = len(t[2])
-	# 	i = 0
-	# 	res = []        
-	# 	while i < x or i < y:
-	# 		if t[1] == '+' or t[1] == 'add':
-	# 			res[i] = t[0][i%x] + t[2][i%y]
-	# 		elif t[1] == '-' or t[1] == 'sub':
-	# 			res[i] = t[0][i%x] - t[2][i%y]
-	# 		elif t[1] == '*' or t[1] == 'mul':
-	# 			res[i] = t[0][i%x] * t[2][i%y]
-	# 		elif t[1] == '/' or t[1] == 'div':
-	# 			res[i] = t[0][i%x] / t[2][i%y]
-	# 		elif t[1] == '&' or t[1] == 'mix':
-	# 			res[i] = (t[0][i%x] + t[2][i%y])/2     
-	# 		i = i + 1
-	# 	t[0] = res
-	# else:
-	# 	t[0] = []
 			
 def p_g(t):
 	'''g : SIN LPAREN NUMBER COMA FLOAT RPAREN
@@ -68,13 +43,13 @@ def p_g(t):
 		 | FLOAT'''
 
 	if t[1] == 'sin':
-		pass
+		t[0] = sin(t[3],t[5])
 	elif t[1] == 'lin':
-		pass
+		t[0] = lin(t[3],t[5])
 	elif t[1] == 'sil':
-		pass
+		t[0] = sil()
 	elif t[1] == 'noi':
-		pass
+		t[0] = noi(t[3])
 	else:
 		t[0] = [t[1]]
 
@@ -101,10 +76,10 @@ def p_sign(t):
 			| NEGATIVE
 			| '''
 
-	# if t[1] == '+' or t[1] == '':
-	# 	t[0] = 1
-	# else:
-	# 	t[0] = -1
+	if t[1] == '+' or t[1] == '':
+		t[0] = 1
+	else:
+		t[0] = -1
 
 def p_paren(t):
 	'''paren : LPAREN RPAREN
