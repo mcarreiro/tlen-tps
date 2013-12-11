@@ -1,6 +1,6 @@
 import math
 global beat
-beat = 8
+beat = 12
 def sin(c,a):
 	buff = [0]*beat
 	x = (c*2*(math.pi))/beat
