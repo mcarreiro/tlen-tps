@@ -7,7 +7,11 @@ def p_s(t):
 
 	if len(t) == 3: #Caso G B		
 		if t[1] != None and t[2] != None: #Caso Generador y Resto Operador
-			t[0] = oper(t[2]['operator'],t[1],t[2]['value'])
+			try:
+				t[0] = oper(t[2]['operator'],t[1],t[2]['value'])
+			except:
+				t[0] = method(t[2]['method'],t[1],t[2]['arg1'])
+
 		elif t[1] != None and t[2] == None: #Caso Generador y NO Operador
 			t[0] = t[1]
 		else:

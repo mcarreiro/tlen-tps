@@ -97,7 +97,6 @@ def oper(op, buff_a, buff_b):
 		buff[i] = op(a[i], b[i])
 	return buff
 
-
 #OPERADORES
 def add(a,b):
 	return a + b
