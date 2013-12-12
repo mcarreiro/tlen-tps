@@ -77,7 +77,7 @@ def resize(buff_a,L):
 
 #GENERALIZADORES
 def method(op, buff, p):
-	return locals()[op](buff,p)
+	return globals()[op](buff,p)
 
 def oper(op, buff_a, buff_b):
 	if op == ';' or op == 'con':
@@ -111,5 +111,3 @@ def mix(a,b):
 	return (a+b)/2
 
 function = {'add':add, '+': add,'sub':sub, '-': sub, 'mul':mul, '*': mul, 'div':div, '/':div, 'mix':mix, '&':mix}
-
-method = {'add':add, '+': add, 'sub':sub, '-': sub,'mul':mul, '*': mul,'div':div, '/':div, 'mix':mix, '&':mix}
