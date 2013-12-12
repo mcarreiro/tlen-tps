@@ -106,5 +106,4 @@ def p_paren(t):
 			 | '''
 
 def p_error(t):
-	print t
 	print("Syntax error at '%s'" % t.value)
