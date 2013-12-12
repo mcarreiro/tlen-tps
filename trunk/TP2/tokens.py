@@ -2,7 +2,7 @@ tokens = (
     'CON','MIX','ADD','SUB','MUL','DIV','SIN',
     'LIN','NOI','SIL','PLAY','POST','LOOP',
 	'TUNE','FILL','REDUCE','EXPAND','NUMBER','LKEY','RKEY',
-	'LPAREN','RPAREN','POINT','COMA', 'FLOAT','POSITIVE','NEGATIVE'
+	'LPAREN','RPAREN','POINT','COMA', 'FLOAT'#,'POSITIVE','NEGATIVE'
     )
 
 # Tokens
@@ -14,8 +14,8 @@ t_SUB  = r'sub|-'
 t_MUL  = r'mul|\*'
 t_DIV  = r'div|/'
 t_SIN  = r'sin'
-t_POSITIVE = r'\+'
-t_NEGATIVE = r'-'
+# t_POSITIVE = r'\+'
+# t_NEGATIVE = r'-'
 
 t_LIN  = r'lin|linear'
 t_NOI  = r'noi|noise'
@@ -48,7 +48,7 @@ def t_FLOAT(t):
     return t
 
 def t_NUMBER(t):
-    r'\d+'
+    r'[-+]?\d+'
     try:
         t.value = int(t.value)
     except ValueError:

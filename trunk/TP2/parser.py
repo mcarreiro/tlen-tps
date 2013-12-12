@@ -53,8 +53,8 @@ def p_g(t):
 		 | LIN LPAREN FLOAT COMA FLOAT RPAREN
 		 | SIL paren
 		 | NOI LPAREN FLOAT RPAREN
-		 | FLOAT
 		 | NUMBER'''
+		 # | FLOAT'''
 	if t[1] == 'sin':
 		t[0] = sin(t[3],t[5])
 	elif t[1] == 'lin':
@@ -79,29 +79,26 @@ def p_p(t):
 	'''p : PLAY LPAREN FLOAT RPAREN
 		 | POST paren
 		 | LOOP LPAREN NUMBER RPAREN
-		 | TUNE LPAREN sign NUMBER RPAREN
-		 | FILL LPAREN FLOAT RPAREN
+		 | TUNE LPAREN NUMBER RPAREN
+		 | FILL LPAREN NUMBER RPAREN
 		 | REDUCE LPAREN NUMBER RPAREN
 		 | EXPAND LPAREN NUMBER RPAREN'''
 	if len(t) == 3: #Casos POST
 		obj = {'method': t[1], 'arg1':None}
 		t[0] = obj
-	elif len(t) == 5: #Casos PLAY, LOOP, FILL, REDUCE y EXPAND
+	else: #Casos PLAY, LOOP, TUNE, FILL, REDUCE y EXPAND
 		obj = {'method': t[1], 'arg1':t[3]}
 		t[0] = obj
-	else: #Caso TUNE
-		obj = {'method': t[1], 'arg1':t[3]*t[4]}
-		t[0] = obj
 
-def p_sign(t):
-	'''sign : POSITIVE
-			| NEGATIVE
-			| '''
+# def p_sign(t):
+# 	'''sign : POSITIVE
+# 			| NEGATIVE
+# 			| '''
 
-	if t[1] == '+' or t[1] == '':
-		t[0] = 1
-	else:
-		t[0] = -1
+# 	if t[1] == '+' or t[1] == '':
+# 		t[0] = 1
+# 	else:
+# 		t[0] = -1
 
 def p_paren(t):
 	'''paren : LPAREN RPAREN
