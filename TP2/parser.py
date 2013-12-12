@@ -40,7 +40,6 @@ def p_a(t):
 def p_b(t):
 	'''b : o s
 		 | '''
-
 	if len(t) > 1:
 		obj = {'operator': t[1], 'value': t[2]}
 		t[0] = obj
@@ -51,7 +50,6 @@ def p_g(t):
 		 | SIL paren
 		 | NOI LPAREN FLOAT RPAREN
 		 | FLOAT'''
-
 	if t[1] == 'sin':
 		t[0] = sin(t[3],t[5])
 	elif t[1] == 'lin':
