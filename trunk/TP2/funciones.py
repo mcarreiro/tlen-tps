@@ -1,9 +1,10 @@
-import math
-import numpy
-import sys
+import math,numpy,sys,pygame
 
 global beat
 beat = 12
+
+global sample_rate
+sample_rate = 44100
 
 #EXCEPCIONES
 class NegativeException(Exception):
@@ -46,12 +47,27 @@ def noi(a):
 
 
 #METODOS
+def play(buff,ms):
+	pygame.mixer.pre_init(sample_rate, -16, 1) # 44.1kHz, 16-bit signed, mono
+	pygame.init()
+
+	buff = numpy.array(buff)
+
+	ms = int(round(ms))
+
+	sound = pygame.sndarray.make_sound(buff)
+	sound.play(-1)
+	pygame.time.delay(ms)
+	sound.stop()
+
 def post(buff,p=None):
 	#Aca no importa que sea p
 	cadena = ""
 	for i in range(0,len(buff)):
 		cadena= cadena+" " +str(buff[i])
 	print cadena
+
+	return buff
 
 def loop(buff,R):
 	this_function_name = sys._getframe().f_code.co_name
