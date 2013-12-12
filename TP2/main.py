@@ -6,7 +6,7 @@ yacc.yacc()
 while 1:
     try:
         # s = input('calc > ')   # Use raw_input on Python 2
-        s = '{{-1;1}.loop(44).expand(1).tune(-1).loop(3).fill(3)}.loop(5).post()'
+        s = '{{-1;1}.loop(44).expand(1).tune(-1).loop(3).fill(3)}.loop(5).post().play(500)'
     except EOFError:
         break
     yacc.parse(s)
