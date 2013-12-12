@@ -39,7 +39,7 @@ t_COMA = r','
 #t_NAME    = r'[a-zA-Z_][a-zA-Z0-9_]*'
 
 def t_FLOAT(t):
-    r'[-+]?\d+\.\d+|\d+'
+    r'[-+]?\d+\.\d+'
     try:
         t.value = float(t.value)
     except ValueError:
@@ -50,7 +50,6 @@ def t_FLOAT(t):
 def t_NUMBER(t):
     r'\d+'
     try:
-        print t.value
         t.value = int(t.value)
     except ValueError:
         print("Integer value too large %d", t.value)

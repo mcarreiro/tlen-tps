@@ -49,7 +49,8 @@ def p_g(t):
 		 | LIN LPAREN FLOAT COMA FLOAT RPAREN
 		 | SIL paren
 		 | NOI LPAREN FLOAT RPAREN
-		 | FLOAT'''
+		 | FLOAT
+		 | NUMBER'''
 	if t[1] == 'sin':
 		t[0] = sin(t[3],t[5])
 	elif t[1] == 'lin':
@@ -110,4 +111,5 @@ def p_paren(t):
 	# 	t[0] = 1
 
 def p_error(t):
+	print t
 	print("Syntax error at '%s'" % t.value)
