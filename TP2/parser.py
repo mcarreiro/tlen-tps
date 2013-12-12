@@ -49,12 +49,12 @@ def p_b(t):
 		t[0] = obj
 			
 def p_g(t):
-	'''g : SIN LPAREN NUMBER COMA FLOAT RPAREN
+	'''g : SIN LPAREN FLOAT COMA FLOAT RPAREN
 		 | LIN LPAREN FLOAT COMA FLOAT RPAREN
 		 | SIL paren
 		 | NOI LPAREN FLOAT RPAREN
-		 | NUMBER'''
-		 # | FLOAT'''
+		 | FLOAT'''
+		 # | FLOAT NUMBER'''
 	if t[1] == 'sin':
 		t[0] = sin(t[3],t[5])
 	elif t[1] == 'lin':
@@ -78,11 +78,11 @@ def p_o(t):
 def p_p(t):
 	'''p : PLAY LPAREN FLOAT RPAREN
 		 | POST paren
-		 | LOOP LPAREN NUMBER RPAREN
-		 | TUNE LPAREN NUMBER RPAREN
-		 | FILL LPAREN NUMBER RPAREN
-		 | REDUCE LPAREN NUMBER RPAREN
-		 | EXPAND LPAREN NUMBER RPAREN'''
+		 | LOOP LPAREN FLOAT RPAREN
+		 | TUNE LPAREN FLOAT RPAREN
+		 | FILL LPAREN FLOAT RPAREN
+		 | REDUCE LPAREN FLOAT RPAREN
+		 | EXPAND LPAREN FLOAT RPAREN'''
 	if len(t) == 3: #Casos POST
 		obj = {'method': t[1], 'arg1':None}
 		t[0] = obj
@@ -94,22 +94,16 @@ def p_p(t):
 # 	'''sign : POSITIVE
 # 			| NEGATIVE
 # 			| '''
-
-# 	if t[1] == '+' or t[1] == '':
-# 		t[0] = 1
-# 	else:
+# 	if len(t) == 2 and t[1] == '-':
+# 		print t[1]
 # 		t[0] = -1
+# 	else:
+# 		t[0] = 1
+
 
 def p_paren(t):
 	'''paren : LPAREN RPAREN
 			 | '''
-
-	#Si REDUCE Y EXPAND, no reciben parametros, entonces 
-
-	# if t[1]:
-	# 	t[0] = t[2]
-	# else:
-	# 	t[0] = 1
 
 def p_error(t):
 	print t
