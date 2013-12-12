@@ -47,7 +47,7 @@ def noi(a):
 
 #METODOS
 def post(buff,p=None):
-	#Acá no importa qué sea p
+	#Aca no importa que sea p
 	cadena = ""
 	for i in range(0,len(buff)):
 		cadena= cadena+" " +str(buff[i])
