@@ -1,10 +1,24 @@
 import math
 import numpy
+import sys
+
 global beat
 beat = 12
 
+#EXCEPCIONES
+class NegativeException(Exception):
+	@classmethod
+	def check(self,x,funcion):
+		if x<=0:
+			raise self('Es menor o igual a 0 en la funcion: ',funcion)
+
 #GENERADORES
 def sin(c,a):
+	this_function_name = sys._getframe().f_code.co_name
+
+	NegativeException.check(c,this_function_name)
+	NegativeException.check(a,this_function_name)
+
 	buff = [0]*beat
 	x = (c*2*(math.pi))/beat
 	for i in range(0,beat):
@@ -12,39 +26,63 @@ def sin(c,a):
 	return buff
 
 def lin(a,b):
+	this_function_name = sys._getframe().f_code.co_name
+
+	NegativeException.check(a,this_function_name)
+	NegativeException.check(b,this_function_name)
+
+
 	return numpy.linspace(a,b,beat)
 
 def sil():
 	return [0]*beat
 
 def noi(a):
+	this_function_name = sys._getframe().f_code.co_name
+	NegativeException.check(a,this_function_name)
+
 	return numpy.random.random_sample(size=beat)*a
 
 
 
 #METODOS
 def post(buff,p=None):
+	#Acá no importa qué sea p
 	cadena = ""
 	for i in range(0,len(buff)):
 		cadena= cadena+" " +str(buff[i])
 	print cadena
 
 def loop(buff,R):
+	this_function_name = sys._getframe().f_code.co_name
+	NegativeException.check(R,this_function_name) 
+
+	R = int(round(R))
+
 	buff_r = []
 	for i in range(0,R):
 		buff_r = buff_r + buff
 	return buff_r
 			
 def resample(buff_a,L):
+	this_function_name = sys._getframe().f_code.co_name
+	NegativeException.check(L,this_function_name) 
+
+	L = int(round(L))
+
 	buff_b =[0]*L
 	for i in range(0,L):
 		buff_b[i] = buff_a[i*len(buff_a)//L]
 	return buff_b
 
 def tune(buff , P):
+	#Acepta negativos, 0 y positivos
 	return resample(buff,int(len(buff)*((2**(1.0/beat))**-P)))
 
 def reduce(buff, N):
+	this_function_name = sys._getframe().f_code.co_name
+	NegativeException.check(N,this_function_name) 
+
 	L = beat*N
 	if len(buff)>N:
 		return resample ( buff , N)
@@ -52,6 +90,9 @@ def reduce(buff, N):
 		return buff
 
 def expand(buff, N):
+	this_function_name = sys._getframe().f_code.co_name
+	NegativeException.check(N,this_function_name) 
+
 	L = beat*N
 	if len(buff)<N:
 		return resample ( buff , N)
@@ -59,7 +100,11 @@ def expand(buff, N):
 		return buff
 
 def fill(buff,N):
-	L=beat*N
+	this_function_name = sys._getframe().f_code.co_name
+	NegativeException.check(N,this_function_name) 
+
+	L=beat*int(round(N))
+
 	buff_b = [0]*L
 	for i in range(0,L):
 		if i < len(buff):
@@ -69,7 +114,10 @@ def fill(buff,N):
 	return buff_b
 
 def resize(buff_a,L):
-	buff_b = [0]*L
+	this_function_name = sys._getframe().f_code.co_name
+	NegativeException.check(L,this_function_name) 
+
+	buff_b = [0]*int(round(L))
 	for i in range(0,L):
 		buff_b[i] = buff_a[i % len(buff_a)]
 	return buff_b
