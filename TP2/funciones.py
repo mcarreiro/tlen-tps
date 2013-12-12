@@ -97,21 +97,9 @@ def oper(op, buff_a, buff_b):
 		buff[i] = op(a[i], b[i])
 	return buff
 
-funtion = 
-	{'add':add, '+': add,
-	 'sub':sub, '-': sub,
-	 'mul':mul, '*': mul,
-	 'div':div, '/':div,
-	 'mix':mix, '&':mix
-	}
+function = {'add':add, '+': add,'sub':sub, '-': sub, 'mul':mul, '*': mul, 'div':div, '/':div, 'mix':mix, '&':mix}
 
-method = 
-	{'add':add, '+': add,
-	 'sub':sub, '-': sub,
-	 'mul':mul, '*': mul,
-	 'div':div, '/':div,
-	 'mix':mix, '&':mix
-	}
+method = {'add':add, '+': add, 'sub':sub, '-': sub,'mul':mul, '*': mul,'div':div, '/':div, 'mix':mix, '&':mix}
 
 
 

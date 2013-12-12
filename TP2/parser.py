@@ -16,7 +16,7 @@ def p_s(t):
 		a = t[4]
 		res = t[2]
 		if res != None:
-			while a != None
+			while a != None:
 				if len(a) == 3: #Caso methodo
 					res = method(a['method'],res,a['arg1'])
 					a = a['rest']
@@ -104,7 +104,7 @@ def p_paren(t):
 	'''paren : LPAREN RPAREN
 			 | '''
 
-	#Si REDUCE Y EXPAND, no reciben parámetros, entonces 
+	#Si REDUCE Y EXPAND, no reciben parametros, entonces 
 
 	# if t[1]:
 	# 	t[0] = t[2]
