@@ -2,7 +2,7 @@ tokens = (
     'CON','MIX','ADD','SUB','MUL','DIV','SIN',
     'LIN','NOI','SIL','PLAY','POST','LOOP',
 	'TUNE','FILL','REDUCE','EXPAND','NUMBER','LKEY','RKEY',
-	'LPAREN','RPAREN','POINT','COMA', 'FLOAT', 'PAREN','POSITIVE','NEGATIVE'
+	'LPAREN','RPAREN','POINT','COMA', 'FLOAT','POSITIVE','NEGATIVE'
     )
 
 # Tokens
@@ -50,6 +50,7 @@ def t_FLOAT(t):
 def t_NUMBER(t):
     r'\d+'
     try:
+        print t.value
         t.value = int(t.value)
     except ValueError:
         print("Integer value too large %d", t.value)

@@ -97,11 +97,6 @@ def oper(op, buff_a, buff_b):
 		buff[i] = op(a[i], b[i])
 	return buff
 
-function = {'add':add, '+': add,'sub':sub, '-': sub, 'mul':mul, '*': mul, 'div':div, '/':div, 'mix':mix, '&':mix}
-
-method = {'add':add, '+': add, 'sub':sub, '-': sub,'mul':mul, '*': mul,'div':div, '/':div, 'mix':mix, '&':mix}
-
-
 
 #OPERADORES
 def add(a,b):
@@ -114,3 +109,7 @@ def div(a,b):
 	return a/b
 def mix(a,b):
 	return (a+b)/2
+
+function = {'add':add, '+': add,'sub':sub, '-': sub, 'mul':mul, '*': mul, 'div':div, '/':div, 'mix':mix, '&':mix}
+
+method = {'add':add, '+': add, 'sub':sub, '-': sub,'mul':mul, '*': mul,'div':div, '/':div, 'mix':mix, '&':mix}
