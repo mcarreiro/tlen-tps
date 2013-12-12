@@ -3,7 +3,7 @@ from funciones import *
 
 def p_s(t):
 	'''s : LKEY s RKEY a
-		 | g b'''
+		 | g a'''
 
 	if len(t) == 3: #Caso G B		
 		if t[1] != None and t[2] != None: #Caso Generador y Resto Operador
@@ -78,12 +78,12 @@ def p_p(t):
 		 | LOOP LPAREN NUMBER RPAREN
 		 | TUNE LPAREN sign NUMBER RPAREN
 		 | FILL LPAREN FLOAT RPAREN
-		 | REDUCE paren
-		 | EXPAND paren'''
-	if len(t) == 3: #Casos POST, REDUCE y EXPAND
+		 | REDUCE LPAREN NUMBER RPAREN
+		 | EXPAND LPAREN NUMBER RPAREN'''
+	if len(t) == 3: #Casos POST
 		obj = {'method': t[1], 'arg1':None}
 		t[0] = obj
-	elif len(t) == 5: #Casos PLAY, LOOP, FILL
+	elif len(t) == 5: #Casos PLAY, LOOP, FILL, REDUCE y EXPAND
 		obj = {'method': t[1], 'arg1':t[3]}
 		t[0] = obj
 	else: #Caso TUNE
