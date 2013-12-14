@@ -15,13 +15,16 @@ class NegativeException(Exception):
 
 #LECTURA DE ARCHIVOS
 def leerArchivo(ruta):
-	L = []
+	cadena = ""
 	fo = open(ruta) 
-	for line in fo:
-		limpia = line.strip().strip('/t')
-		L.append(limpia)
+	for line in fo:	
+		limpia = line	
+		if ( limpia.find('//') >= 0 ):
+			limpia = limpia[0:limpia.find('//')]
+		limpia = limpia.strip().strip('/t')
+		cadena+=limpia
 	fo.close()
-	return L
+	return cadena
 	
 
 #GENERADORES

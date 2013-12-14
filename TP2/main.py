@@ -4,10 +4,8 @@ import ply.yacc as yacc
 yacc.yacc()
 
 def parsearArchivo(ruta):
-	cadenas = leerArchivo(ruta)
-	for linea in cadenas:
-		print linea
-		yacc.parse(linea)
+	cadena = leerArchivo(ruta)
+	yacc.parse(linea)
 
 def parsearCadena(cadena):
 	yacc.parse(cadena)
