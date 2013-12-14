@@ -3,6 +3,12 @@ from parser import *
 import ply.yacc as yacc
 yacc.yacc()
 
+def parsearArchivo(ruta):
+	cadenas = leerArchivo(ruta)
+	for linea in cadenas:
+		print linea
+		yacc.parse(linea)
+
 while 1:
     try:
         # s = input('calc > ')   # Use raw_input on Python 2
@@ -11,3 +17,5 @@ while 1:
         break
     yacc.parse(s)
     break
+
+
