@@ -1,6 +1,11 @@
 from tokens import *
 from funciones import *
 
+precedence = (
+    ('left','ADD','SUB'),
+    ('left','MUL','DIV'),
+    )
+
 def p_s(t):
 	'''s : LKEY s RKEY a
 		 | g a'''
@@ -112,5 +117,4 @@ def p_paren(t):
 			 | '''
 
 def p_error(t):
-	print t
 	print("Syntax error at '%s'" % t.value)

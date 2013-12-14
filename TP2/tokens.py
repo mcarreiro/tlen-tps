@@ -1,7 +1,7 @@
 tokens = (
     'CON','MIX','ADD','SUB','MUL','DIV','SIN',
     'LIN','NOI','SIL','PLAY','POST','LOOP',
-	'TUNE','FILL','REDUCE','EXPAND','NUMBER','LKEY','RKEY',
+	'TUNE','FILL','REDUCE','EXPAND','LKEY','RKEY',
 	'LPAREN','RPAREN','POINT','COMA', 'FLOAT'#,'POSITIVE','NEGATIVE'
     )
 
@@ -39,7 +39,7 @@ t_COMA = r','
 #t_NAME    = r'[a-zA-Z_][a-zA-Z0-9_]*'
 
 def t_FLOAT(t):
-    r'[-+]?(\d+\.\d+|\d+)'
+    r'[-]?(\d+\.\d+|\d+)'
     try:
         t.value = float(t.value)
     except ValueError:
