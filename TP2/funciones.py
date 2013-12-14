@@ -12,8 +12,8 @@ class NegativeException(Exception):
 	def check(self,x,funcion):
 		if x<=0:
 			raise self('Es menor o igual a 0 en la funcion: ',funcion)
-#LECTURA DE ARCHIVOS
 
+#LECTURA DE ARCHIVOS
 def leerArchivo(ruta):
 	L = []
 	fo = open(ruta) 
