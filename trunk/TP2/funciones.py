@@ -4,7 +4,7 @@ global beat
 beat = 12
 
 global sample_rate
-sample_rate = 44100
+sample_rate = 8000
 
 #EXCEPCIONES
 class NegativeException(Exception):
@@ -62,6 +62,8 @@ def play(buff,ms):
 	pygame.mixer.pre_init(sample_rate, -16, 1) # 44.1kHz, 16-bit signed, mono
 	pygame.init()
 
+	buffO = buff
+
 	buff = numpy.array(buff)
 
 	ms = int(round(ms))
@@ -70,6 +72,8 @@ def play(buff,ms):
 	sound.play(-1)
 	pygame.time.delay(ms)
 	sound.stop()
+
+	return buffO
 
 def post(buff,p=None):
 	#Aca no importa que sea p
@@ -84,13 +88,17 @@ def loop(buff,R):
 	this_function_name = sys._getframe().f_code.co_name
 	NegativeException.check(R,this_function_name) 
 
-	R = int(round(R))
-
 	buff_r = []
-	for i in range(0,R):
-		buff_r = buff_r + buff
+	while R > 0:
+		if R < 1:
+			lastItemToAdd = int(round(R*len(buff)))
+			buff_r = buff_r + buff[:lastItemToAdd]
+			R = 0
+		else:
+			buff_r = buff_r + buff
+			R -= 1
 	return buff_r
-			
+
 def resample(buff_a,L):
 	this_function_name = sys._getframe().f_code.co_name
 	NegativeException.check(L,this_function_name) 
