@@ -1,4 +1,4 @@
-import math,numpy,sys
+import math,numpy,sys,pygame
 
 global beat
 beat = 12
@@ -20,7 +20,6 @@ def leerArchivo(ruta):
 	for line in fo:
 		limpia = line.strip().strip('/t')
 		L.append(limpia)
-		print limpia
 	fo.close()
 	return L
 	
