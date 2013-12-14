@@ -5,17 +5,23 @@ def p_s(t):
 	'''s : LKEY s RKEY a
 		 | g a'''
 
-	if len(t) == 3: #Caso G B		
-		if t[1] != None and t[2] != None: #Caso Generador y Resto Operador
-			try:
-				t[0] = oper(t[2]['operator'],t[1],t[2]['value'])
-			except:
-				t[0] = method(t[2]['method'],t[1],t[2]['arg1'])
+	if len(t) == 3: #Caso G A		
+		a = t[2]
+		res = t[1]
+		if res != None and a !=None: #Caso Generador y Resto Operador
+			while a != None:
+				if len(a) == 3: #Caso methodo
+					res = method(a['method'],res,a['arg1'])
+					a = a['rest']
+				elif len(a) == 2: #Caso operador
+					res = oper(a['operator'],res,a['value'])
+					a = None
+				else: #Caso Vacio
+					a = None
 
-		elif t[1] != None and t[2] == None: #Caso Generador y NO Operador
+			t[0] = res
+		else:#Caso Generador y NO Operador
 			t[0] = t[1]
-		else:
-			pass #Aca no deberia levantar Exception?
 	else: #Caso {S}A
 		a = t[4]
 		res = t[2]
@@ -106,4 +112,5 @@ def p_paren(t):
 			 | '''
 
 def p_error(t):
+	print t
 	print("Syntax error at '%s'" % t.value)
