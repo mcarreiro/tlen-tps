@@ -9,6 +9,9 @@ def parsearArchivo(ruta):
 		print linea
 		yacc.parse(linea)
 
+def parsearCadena(cadena):
+	yacc.parse(cadena)
+
 while 1:
     try:
         # s = input('calc > ')   # Use raw_input on Python 2
