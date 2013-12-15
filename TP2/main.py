@@ -37,6 +37,9 @@ while 1:
 		# s = '{-1-2;2;3}.post()'
 		#EJEMPLO 2
 		s = '{-2;2;3-1}.post()'
+		#EJEMPLO FALLA
+		s = '{sin(33).tune(-2);sin(33).tune(+1)}.post()'
+		s = '{-1;1}.loop(44).expand.post'
     except EOFError:
         break
     yacc.parse(s)
