@@ -32,7 +32,11 @@ while 1:
 		#     {-1;1}.loop(44).expand(2).tune(+4).loop(2.9).fill(3);         
 		#     {-1;1}.loop(44).expand(2).loop(8.9).fill(9)                  
 		# }.loop(3).play(300)'''
-		s = '{1+2*3}.post()'
+
+		#EJEMPLO 1
+		# s = '{-1-2;2;3}.post()'
+		#EJEMPLO 2
+		s = '{-2;2;3-1}.post()'
     except EOFError:
         break
     yacc.parse(s)

@@ -4,6 +4,8 @@ from funciones import *
 precedence = (
     ('left','ADD','SUB'),
     ('left','MUL','DIV'),
+    ('left','CON','SUB'),
+    ('right','UMINUS'),
     )
 
 def p_s(t):
@@ -20,10 +22,10 @@ def p_s(t):
 					a = a['rest']
 				elif len(a) == 2: #Caso operador
 					res = oper(a['operator'],res,a['value'])
+					print res
 					a = None
 				else: #Caso Vacio
 					a = None
-
 			t[0] = res
 		else:#Caso Generador y NO Operador
 			t[0] = t[1]
@@ -64,8 +66,8 @@ def p_g(t):
 		 | LIN LPAREN FLOAT COMA FLOAT RPAREN
 		 | SIL paren
 		 | NOI LPAREN FLOAT RPAREN
+		 | SUB FLOAT %prec UMINUS
 		 | FLOAT'''
-		 # | FLOAT NUMBER'''
 	if t[1] == 'sin':
 		t[0] = sin(t[3],t[5])
 	elif t[1] == 'lin':
@@ -74,6 +76,8 @@ def p_g(t):
 		t[0] = sil()
 	elif t[1] == 'noi':
 		t[0] = noi(t[3])
+	elif t[1] == '-':
+		t[0] = [-t[2]]
 	else:
 		t[0] = [t[1]]
 
