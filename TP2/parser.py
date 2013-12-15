@@ -100,11 +100,11 @@ def p_p(t):
 		 | TUNE LPAREN FLOAT RPAREN
 		 | FILL LPAREN FLOAT RPAREN
 		 | REDUCE LPAREN FLOAT RPAREN
-		 | EXPAND LPAREN FLOAT RPAREN'''
-	if len(t) == 3: #Casos POST
-		obj = {'method': t[1], 'arg1':None}
+		 | EXPAND paramopcional'''
+	if len(t) == 3: #Casos POST y EXPAND
+		obj = {'method': t[1], 'arg1':t[2]}
 		t[0] = obj
-	else: #Casos PLAY, LOOP, TUNE, FILL, REDUCE y EXPAND
+	else: #Casos PLAY, LOOP, TUNE, FILL, REDUCE
 		obj = {'method': t[1], 'arg1':t[3]}
 		t[0] = obj
 
@@ -122,6 +122,16 @@ def p_p(t):
 def p_paren(t):
 	'''paren : LPAREN RPAREN
 			 | '''
+	t[0] = None
+
+def p_paramopcional(t):
+	'''paramopcional : LPAREN FLOAT RPAREN
+					 | '''
+	if len(t) == 3:
+	   t[0] = t[2]
+	else:
+	   t[0] = 1
 
 def p_error(t):
+	print t
 	print("Syntax error at '%s'" % t.value)
