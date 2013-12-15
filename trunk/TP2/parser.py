@@ -78,6 +78,9 @@ def p_g(t):
 		t[0] = noi(t[3])
 	elif t[1] == '-':
 		t[0] = [-t[2]]
+	elif t[1] == 'sub':
+		print 'Error, sub no puede usarse para indicar un numero negativo'
+		exit()
 	else:
 		t[0] = [t[1]]
 
