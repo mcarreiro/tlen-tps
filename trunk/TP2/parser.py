@@ -9,66 +9,85 @@ precedence = (
     )
 
 def p_s(t):
-	'''s : LKEY s RKEY a
-		 | g a'''
+	'''s : g a'''
 
-	if len(t) == 3: #Caso G A		
-		a = t[2]
-		res = t[1]
-		if res != None and a !=None: #Caso Generador y Resto Operador
-			while a != None:
-				if len(a) == 3: #Caso methodo
-					res = method(a['method'],res,a['arg1'])
-					a = a['rest']
-				elif len(a) == 2: #Caso operador
-					res = oper(a['operator'],res,a['value'])
-					print res
-					a = None
-				else: #Caso Vacio
-					a = None
-			t[0] = res
-		else:#Caso Generador y NO Operador
-			t[0] = t[1]
-	else: #Caso {S}A
-		a = t[4]
-		res = t[2]
-		if res != None:
-			while a != None:
-				if len(a) == 3: #Caso methodo
-					res = method(a['method'],res,a['arg1'])
-					a = a['rest']
-				elif len(a) == 2: #Caso operador
-					res = oper(a['operator'],res,a['value'])
-					a = None
-				else: #Caso Vacio
-					a = None
+	t[0] = calcularGA(t[1],t[2])
 
-			t[0] = res
+	# if len(t) == 3: #Caso G A		
+	# 	a = t[2]
+	# 	res = t[1]
+	# 	if res != None and a !=None: #Caso Generador y Resto Operador
+	# 		while a != None:
+	# 			if len(a) == 3: #Caso methodo
+	# 				res = method(a['method'],res,a['arg1'])
+	# 				a = a['rest']
+	# 			elif len(a) == 2: #Caso operador
+	# 				res = oper(a['operator'],res,a['value'])
+	# 				print res
+	# 				a = None
+	# 			else: #Caso Vacio
+	# 				a = None
+	# 		t[0] = res
+	# 	else:#Caso Generador y NO Operador
+	# 		t[0] = t[1]
+	# else: #Caso {S}A
+	# 	a = t[4]
+	# 	res = t[2]
+	# 	if res != None:
+	# 		while a != None:
+	# 			if len(a) == 3: #Caso methodo
+	# 				res = method(a['method'],res,a['arg1'])
+	# 				a = a['rest']
+	# 			elif len(a) == 2: #Caso operador
+	# 				res = oper(a['operator'],res,a['value'])
+	# 				a = None
+	# 			else: #Caso Vacio
+	# 				a = None
+
+	# 		t[0] = res
 
 def p_a(t):
 	'''a : POINT p a 
-		 | b'''
-	if t[1] != '.':
-		t[0] = t[1]
-	else:
+		 | '''
+	# if t[1] != '.':
+	# 	t[0] = t[1]
+	# else:
+	# 	obj = {'method': t[2]['method'],'arg1':t[2]['arg1'], 'rest': t[3]}
+	# 	t[0] = obj
+
+	if len(t) == 4:
 		obj = {'method': t[2]['method'],'arg1':t[2]['arg1'], 'rest': t[3]}
 		t[0] = obj
 
-def p_b(t):
-	'''b : o s
-		 | '''
-	if len(t) > 1:
-		obj = {'operator': t[1], 'value': t[2]}
-		t[0] = obj
+# def p_b(t):
+# 	'''b : o s
+# 		 | '''
+# 	if len(t) > 1:
+# 		obj = {'operator': t[1], 'value': t[2]}
+# 		t[0] = obj
 			
 def p_g(t):
-	'''g : SIN LPAREN FLOAT COMA FLOAT RPAREN
+	'''g : g a o g a
+		 | LKEY g a RKEY
+		 | SIN LPAREN FLOAT COMA FLOAT RPAREN
 		 | LIN LPAREN FLOAT COMA FLOAT RPAREN
 		 | SIL paren
 		 | NOI LPAREN FLOAT RPAREN
 		 | SUB FLOAT %prec UMINUS
 		 | FLOAT'''
-	if t[1] == 'sin':
+	if len(t) == 6: # CASo  g a O g a
+		a = t[2]
+		primerG = t[1]
+		primerG = calcularGA(primerG,a)
+		
+		a = t[5]
+		segundaG = t[4]
+		segundaG = calcularGA(segundaG,a)
+
+		t[0] = oper(t[3],primerG,segundaG)
+	elif len(t) == 4: #CASO {G}
+		t[0] = calcularGA(t[2],t[3])
+	elif t[1] == 'sin':
 		t[0] = sin(t[3],t[5])
 	elif t[1] == 'lin':
 		t[0] = lin(t[3],t[5])

@@ -183,6 +183,21 @@ def oper(op, buff_a, buff_b):
 		buff[i] = op(a[i], b[i])
 	return buff
 
+def calcularGA(g,a):
+	if g != None and a !=None: #Caso Generador y Resto Operador
+		while a != None:
+			if len(a) == 3: #Caso methodo
+				g = method(a['method'],g,a['arg1'])
+				a = a['rest']
+			elif len(a) == 2: #Caso operador
+				g = oper(a['operator'],g,a['value'])
+				a = None
+			else: #Caso Vacio
+				a = None
+		return g
+	else:#Caso Generador y NO Operador
+		return g
+
 #OPERADORES
 def add(a,b):
 	return a + b
