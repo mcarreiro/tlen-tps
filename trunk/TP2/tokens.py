@@ -31,7 +31,7 @@ t_LPAREN  = r'\('
 t_RPAREN  = r'\)'
 t_LKEY  = r'\{'
 t_RKEY  = r'\}'
-t_POINT  = r'.'
+t_POINT  = r'\.'
 t_COMA = r','
 
 #t_SIGN = r'(\+|-)?'
