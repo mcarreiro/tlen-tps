@@ -80,8 +80,8 @@ Por como es el analizador sintactico, por un tema de precedencia, decidimos que 
 Es decir, E OP E debe ir como {E OP E} si se quiere imponer un orden de evaluación.
 Esta decision la tomamos debido a que por como se realiza la recursión necesitamos la expresividad de las llaves para poder decidir en que orden se ejecutan los operadores.\\
 Ejemplos: \\
-{{2}+{2;2};{2}} = {4;4;4}\\
-{{2};{2;2}+{2}} = {2;4;4}\\
+\{\{2\}+\{2;2\};\{2\}\} = \{4;4;4\}\\
+\{\{2\};\{2;2\}+\{2\}\} = \{2;4;4\}\\
 
 
 Además, aunque hay funciones cuyas especificaciones requieren parametros, en algunos metodos brindamos la posibilidad de no agregarlos y tener valores por defecto.
