@@ -27,28 +27,103 @@
 \section{Introduccíón}
 
 
-El enunciado plantea la necesidad de generar un parsear para una gramatica y generar sonido a partir de la misma. Para eso usamos la misma gramatica que para el primer TP ya que consideramos correcta y acorde para resolver esta necesidad.
+El enunciado plantea la necesidad de generar un parsear para una gramatica y generar sonido a partir de la misma. Para eso usamos la misma gramatica que para el primer TP ya que consideramos correcta y acorde para resolver esta necesidad, y si bien hay conflictos  SHIFT/REDUCE en el siguiente estado:
 
-La solución se implemento en Python usando PLY, que usa la tecnica LALR para el analisis sintactico.
+\begin{verbatim}
+    s -> s o s .
+    s -> s . POINT p
+    s -> s . o s
+    o -> . CON
+    o -> . MIX
+    o -> . ADD
+    o -> . SUB
+    o -> . MUL
+    o -> . DIV
+\end{verbatim}
 
-Uso:
+El parser YACC decide correctamente hacer SHIFT ya que hacer un REDUCE carecería de sentido
+
+La solución se implemento en Python usando PLY, el cual contiene a YACC que usa la tecnica LALR para el analisis sintactico.
+
+\subsection{Manual de uso del Super Collider}
+El Super Collider tal como esta pensado para generar buffers de sonidos en tiempo real tiene un lenguaje el cual su uso se pensó para que sea simple y concreto. Su escritura se divide en tres grupos principales: generadores, metodos y operadores. Cuyo resultado siempre es una "tira" de numeros concatenados.  
+
+Los generadores se pueden pensar como valores concretos para comenzar, a lo que luego se le aplican los metodos y operadores. Estos son sin, lin, sil, noi y numeros decimales (con o sin signo)
+
+Los operadores actuan sobre dos buffers, operando entre ellos y generando uno nuevo como resultado. Estos son con, mix, add, sub, mul y div.
+
+Los metodos son el grupo más relacionado con la parte musical, ya que son los encargados de, partiendo de un buffer, transformarlo aplicando operaciones puramente de manipulación de sonido y a su vez pueden contener efectos externos tales como imprimir buffer o reproducir sonido. Estos son play, post, loop, tune, fill, reduce, expand.
+
+Expliquemos un poco su uso, suponiendo que B es un buffer, OP una operador, G un generador y M un metodo. Entonces sus posibles usos son:
+
+Generadores, se utilizan solos, algunos pueden requerir parametros:
+G
+
+Metodos, a un buffer se le aplica un metodo que genera otro buffer nuevo
+B.M
+
+Operadores, realiza operaciones sobre 2 buffers y generan otro nuevo.
+B1 OP B2
+
+
+
+\subsection{Manual de uso del interprete}
 Primero se debe generar la gramatica con "python main.py". Luego para usar el parser hay dos funciones en el main.py, parsearArchivo(ruta) y parsearCadena(cadena), la cual se le pasa una ruta y una cadena respectivamente.
 En el caso del metodo parsearArchivo, el archivo del mismo debera contener una cadena sola, la cual puede tener comentarios (usando //) los cuales se ignoraran y saltos de linea los cuales se concatenaran al cargar el archivo.
 
 
-Librerias necesarias para PYTHON:
+\subsection{Librerias necesarias para PYTHON}
 PLY, PYGAMES
 
-Decisiones y aclaraciones:
+\subsection{Decisiones y aclaraciones}
 Por como es el analizador sintactico, por un tema de precedencia, decidimos que los operadores (add, sub, mix, con, div, mul) se van evaluando de derecha a izquierda, y si se quiere evitar esto se deben usar entre llaves. 
 Es decir, E OP E debe ir como {E OP E} si se quiere imponer un orden de evaluación.
-Ejemplos: 
-{{2}+{2;2};{2}} = {4;4;4}
-{{2};{2;2}+{2}} = {2;4;4}
+Esta decision la tomamos debido a que por como se realiza la recursión necesitamos la expresividad de las llaves para poder decidir en que orden se ejecutan los operadores.\\
+Ejemplos: \\
+{{2}+{2;2};{2}} = {4;4;4}\\
+{{2};{2;2}+{2}} = {2;4;4}\\
 
 
 Además, aunque hay funciones cuyas especificaciones requieren parametros, en algunos metodos brindamos la posibilidad de no agregarlos y tener valores por defecto.
 
+El audio se genera a 44.1kHz, 16-bit signed, mono
+
+\subsection{Ejemplos permitidos}
+
+\begin{itemize}
+\item{\{ 
+		     \{\{-1;1\}.loop(44).expand(2).tune(-1).loop(2.9).fill(3)\}.loop(5);                                                  
+		     \{-1;1\}.loop(44).expand(2).loop(6);                            
+		     \{-1;1\}.loop(44).expand(2).tune(2).loop(9).fill(9);            
+		     \{-1;1\}.loop(44).expand(2).tune(5).loop(3).fill(3);           
+		     \{-1;1\}.loop(44).expand(2).tune(-1).loop(3).fill(3);            
+		     \{-1;1\}.loop(44).expand(2).loop(4.5);                           
+		     \{-1;1\}.loop(44).expand(2).tune(-1).loop(4.5).fill(4.5);        
+		     \{-1;1\}.loop(44).expand(2).tune(-5).loop(12).fill(12);          
+		     \{\{-1;1\}.loop(44).expand(2).loop(2.9).fill(3)\}.loop(2);                                                
+		     \{-1;1\}.loop(44).expand(2).tune(-3).loop(2.9).fill(3);         
+		     \{-1;1\}.loop(44).expand(2).loop(4.5);                           
+		     \{-1;1\}.loop(44).expand(2).tune(-5).loop(5.9).fill(6);         
+		     \{-1;1\}.loop(44).expand(2).tune(-5).loop(3).fill(3);            
+		     \{-1;1\}.loop(44).expand(2).loop(3);                            
+		     \{-1;1\}.loop(44).expand(2).tune(+5).loop(3).fill(3);            
+		     \{-1;1\}.loop(44).expand(2).tune(+4).loop(2.9).fill(3);         
+		     \{-1;1\}.loop(44).expand(2).loop(8.9).fill(9)                  
+		 \}.loop(3).post()}
+\item{\{-2.loop(4);\{2-1\};3\}.post()}
+\item{\{sin(34,45).tune(2);sin(3,1).tune(1)\}.post().play(500)}
+\item{\{-1;1\}.post().loop(44).expand(12).post()}
+\item{\{-1;1\}.loop(44).expand(2).tune(15).play(500).post}
+\item{\{1\}}
+\end{itemize}
+
+\subsection{Ejemplos no permitidos}
+\begin{itemize}
+\item{1; operadores necesitan dos buffers}
+\item{2.play faltan parámetros}
+\item{.loop(15) falta buffers}
+\item{\{2\}.loop(\{9\}) pasa buffer como parametro y no un número}
+\end{itemize}
 
 \section{Código}
 
