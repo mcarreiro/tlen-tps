@@ -1,0 +1,67 @@
+\documentclass[a4paper,titlepage,10pt]{article}
+
+\usepackage[margin=0.6in]{geometry} % margenes
+\usepackage[spanish]{babel} % Le indicamos a LaTeX que vamos a escribir en español.
+\usepackage[utf8]{inputenc} % Quiero acentos
+\usepackage{caratula}
+\usepackage{listings}
+\usepackage{xcolor}
+
+\titulo{Super Collider}
+\fecha{16 / 12 / 2013}
+\materia{Teoría de Lenguajes}
+\grupo{Grupo 12}
+\integrante{Carreiro, Martin}{45/10}{martin301290@gmail.com}
+\integrante{Kujawski, Kevin}{459/10}{kevinkuja@gmail.com}
+\integrante{Ortiz De Zarate, Juan Manuel}{403/10}{jmanuoz@gmail.com}
+
+\lstset{language=Python,
+        morekeywords={as,__init__,MyClass},
+        keywordstyle=\color{teal}\bfseries,
+        }
+
+\begin{document} % Todo lo que escribamos a partir de aca va a aparecer en el documento.
+
+\maketitle
+
+\section{Introduccíón}
+
+
+El enunciado plantea la necesidad de generar un parsear para una gramatica y generar sonido a partir de la misma. Para eso usamos la misma gramatica que para el primer TP ya que consideramos correcta y acorde para resolver esta necesidad.
+
+La solución se implemento en Python usando PLY, que usa la tecnica LALR para el analisis sintactico.
+
+Uso:
+Primero se debe generar la gramatica con "python main.py". Luego para usar el parser hay dos funciones en el main.py, parsearArchivo(ruta) y parsearCadena(cadena), la cual se le pasa una ruta y una cadena respectivamente.
+En el caso del metodo parsearArchivo, el archivo del mismo debera contener una cadena sola, la cual puede tener comentarios (usando //) los cuales se ignoraran y saltos de linea los cuales se concatenaran al cargar el archivo.
+
+
+Librerias necesarias para PYTHON:
+PLY, PYGAMES
+
+Decisiones y aclaraciones:
+Por como es el analizador sintactico, por un tema de precedencia, decidimos que los operadores (add, sub, mix, con, div, mul) se van evaluando de derecha a izquierda, y si se quiere evitar esto se deben usar entre llaves. 
+Es decir, E OP E debe ir como {E OP E} si se quiere imponer un orden de evaluación.
+Ejemplos: 
+{{2}+{2;2};{2}} = {4;4;4}
+{{2};{2;2}+{2}} = {2;4;4}
+
+
+Además, aunque hay funciones cuyas especificaciones requieren parametros, en algunos metodos brindamos la posibilidad de no agregarlos y tener valores por defecto.
+
+
+\section{Código}
+
+\subsection{Lexer}
+\lstinputlisting{tokens.py}
+
+\subsection{Parser}
+\lstinputlisting{parser.py}
+
+\subsection{Funciones}
+\lstinputlisting{funciones.py}
+
+\subsection{Main}
+\lstinputlisting{main.py}
+
+\end{document} %Terminé!
