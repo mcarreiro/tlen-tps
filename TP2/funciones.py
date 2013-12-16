@@ -210,4 +210,5 @@ def div(a,b):
 def mix(a,b):
 	return (a+b)/2
 
-function = {'add':add, '+': add,'sub':sub, '-': sub, 'mul':mul, '*': mul, 'div':div, '/':div, 'mix':mix, '&':mix}
+function = {'add':add, '+': add,'sub':sub, '-': sub, 'mul':mul, '*': mul,
+	 'div':div, '/':div, 'mix':mix, '&':mix}
