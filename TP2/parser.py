@@ -4,14 +4,29 @@ from funciones import *
 precedence = (
     ('left','ADD','SUB'),
     ('left','MUL','DIV'),
-    ('left','CON','SUB'),
+    ('right','CON'),
     ('right','UMINUS'),
     )
 
-def p_s(t):
-	'''s : g a'''
+def p_s1(t):
+	'''s : g'''
+	t[0] = t[1]
+def p_s2(t):
+	'''s : s POINT p'''
+	t[0] = method(t[3]['method'],t[1],t[3]['arg1'])
+def p_s3(t):
+	'''s : s o s'''
+	print t[1]
+	print t[3]
+	t[0] = oper(t[2],t[1],t[3])
+	print t[0]
+def p_s4(t):
+	'''s : LKEY s RKEY'''
+	t[0] = t[2]
 
-	t[0] = calcularGA(t[1],t[2])
+# def p_s(t):
+# 	'''s : g a '''
+# 	t[0] = calcularGA(t[1],t[2])
 
 	# if len(t) == 3: #Caso G A		
 	# 	a = t[2]
@@ -46,18 +61,18 @@ def p_s(t):
 
 	# 		t[0] = res
 
-def p_a(t):
-	'''a : POINT p a 
-		 | '''
+# def p_a(t):
+# 	'''a : POINT p a 
+# 		 | '''
 	# if t[1] != '.':
 	# 	t[0] = t[1]
 	# else:
 	# 	obj = {'method': t[2]['method'],'arg1':t[2]['arg1'], 'rest': t[3]}
 	# 	t[0] = obj
 
-	if len(t) == 4:
-		obj = {'method': t[2]['method'],'arg1':t[2]['arg1'], 'rest': t[3]}
-		t[0] = obj
+	# if len(t) == 4:
+	# 	obj = {'method': t[2]['method'],'arg1':t[2]['arg1'], 'rest': t[3]}
+	# 	t[0] = obj
 
 # def p_b(t):
 # 	'''b : o s
@@ -65,29 +80,15 @@ def p_a(t):
 # 	if len(t) > 1:
 # 		obj = {'operator': t[1], 'value': t[2]}
 # 		t[0] = obj
-			
+
 def p_g(t):
-	'''g : g a o g a
-		 | LKEY g a RKEY
-		 | SIN LPAREN FLOAT COMA FLOAT RPAREN
+	'''g : SIN LPAREN FLOAT COMA FLOAT RPAREN
 		 | LIN LPAREN FLOAT COMA FLOAT RPAREN
 		 | SIL paren
 		 | NOI LPAREN FLOAT RPAREN
 		 | SUB FLOAT %prec UMINUS
 		 | FLOAT'''
-	if len(t) == 6: # CASo  g a O g a
-		a = t[2]
-		primerG = t[1]
-		primerG = calcularGA(primerG,a)
-		
-		a = t[5]
-		segundaG = t[4]
-		segundaG = calcularGA(segundaG,a)
-
-		t[0] = oper(t[3],primerG,segundaG)
-	elif len(t) == 4: #CASO {G}
-		t[0] = calcularGA(t[2],t[3])
-	elif t[1] == 'sin':
+	if t[1] == 'sin':
 		t[0] = sin(t[3],t[5])
 	elif t[1] == 'lin':
 		t[0] = lin(t[3],t[5])
@@ -102,6 +103,22 @@ def p_g(t):
 		exit()
 	else:
 		t[0] = [t[1]]
+
+# def p_g_op(t):
+# 	'''g : g a o g a'''
+# 	a = t[2]
+# 	primerG = t[1]
+# 	primerG = calcularGA(primerG,a)
+	
+# 	a = t[5]
+# 	segundaG = t[4]
+# 	segundaG = calcularGA(segundaG,a)
+
+# 	t[0] = oper(t[3],primerG,segundaG)
+
+# def p_g_key(t):
+#     '''g : LKEY g a RKEY'''
+#     t[0] = calcularGA(t[2],t[3])
 
 def p_o(t):
 	'''o : CON

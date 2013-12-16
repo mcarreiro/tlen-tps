@@ -34,12 +34,11 @@ while 1:
 		# }.loop(3).play(300)'''
 
 		#EJEMPLO 1
-		# s = '{-1-2;2;3}.post()'
-		#EJEMPLO 2
-		s = '{-2;2;3-1}.post()'
+		s = '{-2.loop(4);2-1;3}.post()'
 		#EJEMPLO FALLA
-		s = '{sin(33,12).tune(2);sin(33,12).tune(1)}.post()'
-		# s = '{-1;1}.loop(44).expand(12).post'
+		# s = '{sin(34,45).tune(2);sin(3,1).tune(1)}.post().play(500)'
+		
+		# s = '{-1;1}.post().loop(44).expand(12).post()'
     except EOFError:
         break
     yacc.parse(s)
