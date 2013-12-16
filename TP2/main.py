@@ -34,7 +34,7 @@ while 1:
 		# }.loop(3).play(300)'''
 
 		#EJEMPLO 1
-		s = '{-2.loop(4);2-1;3}.post()'
+		s = '{-2.loop(4);{2-1};3}.post()'
 		#EJEMPLO FALLA
 		# s = '{sin(34,45).tune(2);sin(3,1).tune(1)}.post().play(500)'
 		

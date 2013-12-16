@@ -2,10 +2,8 @@ from tokens import *
 from funciones import *
 
 precedence = (
-    ('left','ADD','SUB'),
-    ('left','MUL','DIV'),
-    ('right','CON'),
     ('right','UMINUS'),
+    ('left','CON'),
     )
 
 def p_s1(t):
@@ -15,11 +13,25 @@ def p_s2(t):
 	'''s : s POINT p'''
 	t[0] = method(t[3]['method'],t[1],t[3]['arg1'])
 def p_s3(t):
-	'''s : s o s'''
+	'''s : s o s %prec CON'''
 	print t[1]
+	print t[2]
 	print t[3]
 	t[0] = oper(t[2],t[1],t[3])
+	print '='
 	print t[0]
+	print '\n'
+
+def p_s5(t):
+	'''s : s CON s'''
+	print t[1]
+	print t[2]
+	print t[3]
+	t[0] = oper(t[2],t[1],t[3])
+	print '='
+	print t[0]
+	print '\n'
+
 def p_s4(t):
 	'''s : LKEY s RKEY'''
 	t[0] = t[2]
@@ -121,8 +133,7 @@ def p_g(t):
 #     t[0] = calcularGA(t[2],t[3])
 
 def p_o(t):
-	'''o : CON
-		| MIX
+	'''o : MIX
 		| ADD
 		| SUB
 		| MUL
