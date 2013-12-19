@@ -29,7 +29,4 @@
 {-1;1}.loop(44).expand.tune(+4).loop(2.9).fill(3); // E5..
 {-1;1}.loop(44).expand.loop(8.9).fill(9) // C5--------..
 
-}.loop(3).play
-
-
-{{-1;1}.loop(44).expand.tune(-1).loop(2.9).fill(3)}.loop(5)
+}.loop(3).play(500)

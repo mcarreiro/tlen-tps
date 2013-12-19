@@ -10,8 +10,8 @@ sample_rate = 8000
 class NegativeException(Exception):
 	@classmethod
 	def check(self,x,funcion):
-		if x<=0:
-			raise self('Es menor o igual a 0 en la funcion: ',funcion)
+		if x<0:
+			raise self('Es menor a 0 en la funcion: ',funcion)
 
 #LECTURA DE ARCHIVOS
 def leerArchivo(ruta):
@@ -41,12 +41,6 @@ def sin(c,a):
 	return buff
 
 def lin(a,b):
-	this_function_name = sys._getframe().f_code.co_name
-
-	NegativeException.check(a,this_function_name)
-	NegativeException.check(b,this_function_name)
-
-
 	return numpy.linspace(a,b,beat)
 
 def sil():
@@ -56,9 +50,9 @@ def noi(a):
 	this_function_name = sys._getframe().f_code.co_name
 	NegativeException.check(a,this_function_name)
 
-	return numpy.random.random_sample(size=beat)*a
+	random_sample = numpy.random.random_sample(size=beat)*a
 
-
+	return list(random_sample)
 
 #METODOS
 def play(buff,ms):

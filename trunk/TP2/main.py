@@ -5,18 +5,18 @@ yacc.yacc()
 
 def parsearArchivo(ruta):
 	cadena = leerArchivo(ruta)
-	yacc.parse(linea)
-
-def parsearCadena(cadena):
-	yacc.parse(cadena)
+	return cadena
 
 while 1:
-    try:
-         s = input('calc > ')   # Use raw_input on Python 2
-  
-    except EOFError:
-        break
-    yacc.parse(s)
-    break
+	try:
+		s = input('calc > ')   # Use raw_input on Python 
+		try:
+			s = parsearArchivo(s)
+			print s
+		except:
+			print s
+	except EOFError:
+		break
+	yacc.parse(s)
 
 
