@@ -161,7 +161,7 @@ def method(op, buff, p):
 
 def oper(op, buff_a, buff_b):
 	if op == ';' or op == 'con':
-		return buff_a+buff_b
+		return list(buff_a)+list(buff_b)
 
 	op = function[op]
 
