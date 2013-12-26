@@ -22,14 +22,14 @@ def p_s4(t):
 
 
 def p_g(t):
-	'''g : SIN LPAREN FLOAT COMA FLOAT RPAREN
+	'''g : SIN LPAREN FLOAT secondparamopcional
 		 | LIN LPAREN sign FLOAT COMA sign FLOAT RPAREN
 		 | SIL paren
 		 | NOI LPAREN FLOAT RPAREN
 		 | SUB FLOAT %prec UMINUS
 		 | FLOAT'''
 	if t[1] == 'sin':
-		t[0] = sin(t[3],t[5])
+		t[0] = sin(t[3],t[4])
 	elif t[1] == 'lin' or t[1] == 'linear':
 		t[0] = lin(t[3]*t[4],t[6]*t[7])
 	elif t[1] == 'sil' or t[1] == 'silence':
@@ -96,7 +96,16 @@ def p_paren(t):
 def p_paramopcional(t):
 	'''paramopcional : LPAREN FLOAT RPAREN
 					 | '''
-	if len(t) == 3:
+
+	if len(t) == 4:
+	   t[0] = t[2]
+	else:
+	   t[0] = 1
+
+def p_secondparamopcional(t):
+	'''secondparamopcional : RPAREN
+					 | COMA FLOAT RPAREN '''
+	if len(t) == 4:
 	   t[0] = t[2]
 	else:
 	   t[0] = 1
