@@ -38,10 +38,12 @@ def sin(c,a):
 	x = (c*2*(math.pi))/beat
 	for i in range(0,beat):
 		buff[i] = a* (math.sin(i*x))
+
 	return buff
 
 def lin(a,b):
-	return numpy.linspace(a,b,beat)
+	lin =  numpy.linspace(a,b,beat)
+	return list(lin)
 
 def sil():
 	return [0]*beat
@@ -55,15 +57,14 @@ def noi(a):
 	return list(random_sample)
 
 #METODOS
+pygame.mixer.pre_init(sample_rate, -16, 1) # 44.1kHz, 16-bit signed, mono
+pygame.init()
 def play(buff,ms):
-	pygame.mixer.pre_init(sample_rate, -16, 1) # 44.1kHz, 16-bit signed, mono
-	pygame.init()
-
 	buffO = buff
 
 	buff = numpy.array(buff)
 
-	ms = int(round(ms))
+	ms = int(round(ms))*100
 
 	sound = pygame.sndarray.make_sound(buff)
 	sound.play(-1)

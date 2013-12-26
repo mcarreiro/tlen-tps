@@ -23,18 +23,18 @@ def p_s4(t):
 
 def p_g(t):
 	'''g : SIN LPAREN FLOAT COMA FLOAT RPAREN
-		 | LIN LPAREN FLOAT COMA FLOAT RPAREN
+		 | LIN LPAREN sign FLOAT COMA sign FLOAT RPAREN
 		 | SIL paren
 		 | NOI LPAREN FLOAT RPAREN
 		 | SUB FLOAT %prec UMINUS
 		 | FLOAT'''
 	if t[1] == 'sin':
 		t[0] = sin(t[3],t[5])
-	elif t[1] == 'lin':
-		t[0] = lin(t[3],t[5])
-	elif t[1] == 'sil':
+	elif t[1] == 'lin' or t[1] == 'linear':
+		t[0] = lin(t[3]*t[4],t[6]*t[7])
+	elif t[1] == 'sil' or t[1] == 'silence':
 		t[0] = sil()
-	elif t[1] == 'noi':
+	elif t[1] == 'noi' or t[1] == 'noise':
 		t[0] = noi(t[3])
 	elif t[1] == '-':
 		t[0] = [-t[2]]
@@ -55,7 +55,7 @@ def p_o(t):
 	t[0] = t[1]
 
 def p_p(t):
-	'''p : PLAY LPAREN FLOAT RPAREN
+	'''p : PLAY paramopcional
 		 | POST paren
 		 | LOOP LPAREN FLOAT RPAREN
 		 | TUNE LPAREN sign FLOAT RPAREN
