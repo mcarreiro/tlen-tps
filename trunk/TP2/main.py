@@ -9,7 +9,7 @@ def parsearArchivo(ruta):
 
 while 1:
 	try:
-		s = input('calc > ')   # Use raw_input on Python 
+		s = str(raw_input('calc > ') )  # Use raw_input on Python 
 		try:
 			s = parsearArchivo(s)
 			print s
